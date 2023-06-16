@@ -22,7 +22,7 @@ module.exports.create = async (req, res) => {
     })
       .then(() => {
         req.flash("success", "Interview added!");
-        return res.redirect("/");
+        return res.redirect("back");
       })
       .catch(() => {
         req.flash("error", "Couldn't add Interview!");
