@@ -13,6 +13,11 @@ passport.use(
       // find a user and establish the identity
       User.findOne({ email: email })
         .then(async function (user) {
+
+          if (!user) {
+            req.flash("error", "Invalid Username or Password");
+            return done(null, false);
+          }
           // match the password
           const isPasswordCorrect = await user.isValidPassword(password);
 
@@ -20,13 +25,12 @@ passport.use(
             req.flash("error", "Invalid Username or Password");
             return done(null, false);
           }
+
           return done(null, user);
         })
         .catch((err) => {
-          if (!err) {
-            req.flash("error", err);
-            return done(err);
-          }
+          req.flash("error", err);
+          return done(err);
         });
     }
   )
