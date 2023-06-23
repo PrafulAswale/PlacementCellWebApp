@@ -3,7 +3,7 @@
 This placement cell web application is created for users/employees to manage interviews of students, and allocate students to companies` interviews.
 It is built using **MongoDB, ExpressJs, EJS, NodeJS and JavaScript.**
 
-Hosted Link: [Placement Cell App](www.host.com)
+Hosted Link: [Placement Cell App](https://placement-cell-app-1lox.onrender.com/)
 
 # Functionality
 
