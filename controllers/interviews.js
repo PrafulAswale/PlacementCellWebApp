@@ -16,6 +16,7 @@ module.exports.addInterview = (req, res) => {
 module.exports.create = async (req, res) => {
   try {
     const { company, date } = req.body;
+
     await Interview.create({
       company,
       date,
@@ -126,5 +127,23 @@ module.exports.deallocate = async (req, res) => {
     return res.redirect("back");
   } catch (err) {
     req.flash("error", "Couldn't deallocate from interview");
+  }
+};
+
+module.exports.destroyInterview = async (req, res) => {
+  try {
+    const { interviewId } = req.params;
+    const interview = await Interview.findById(interviewId);
+    console.log("error in deleting");
+    if (!interview) {
+      req.flash("error", "Interview Not Found");
+      console.log("error", "error in deleting");
+      return;
+    }
+    interview.deleteOne();
+    req.flash("success", "Interview deleted!");
+    return res.redirect("back");
+  } catch (error) {
+    req.flash("error", "Error in deleting Interview");
   }
 };
